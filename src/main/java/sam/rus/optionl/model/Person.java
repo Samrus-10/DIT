@@ -1,4 +1,4 @@
-package sam.rus.model;
+package sam.rus.optionl.model;
 
 import java.util.Objects;
 

@@ -1,6 +1,6 @@
-package sam.rus.service;
+package sam.rus.optionl.service;
 
-import sam.rus.model.Person;
+import sam.rus.optionl.model.Person;
 
 import java.util.List;
 

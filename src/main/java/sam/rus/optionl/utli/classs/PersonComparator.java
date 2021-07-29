@@ -1,6 +1,6 @@
-package sam.rus.utli.classs;
+package sam.rus.optionl.utli.classs;
 
-import sam.rus.model.Person;
+import sam.rus.optionl.model.Person;
 
 import java.util.Comparator;
 

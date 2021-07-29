@@ -1,12 +1,12 @@
-package sam.rus.view;
+package sam.rus.optionl.view;
 
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sam.rus.model.Person;
-import sam.rus.service.imple.PersonServiceImp;
-import sam.rus.utli.exception.MuchArgsException;
-import sam.rus.utli.exception.NotArgsException;
+import sam.rus.optionl.model.Person;
+import sam.rus.optionl.service.imple.PersonServiceImp;
+import sam.rus.optionl.utli.exception.MuchArgsException;
+import sam.rus.optionl.utli.exception.NotArgsException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,6 +1,6 @@
-package sam.rus.view;
+package sam.rus.optionl.view;
 
-import sam.rus.model.Person;
+import sam.rus.optionl.model.Person;
 
 import java.io.*;
 import java.util.ArrayList;

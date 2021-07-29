@@ -1,4 +1,4 @@
-package sam.rus.utli.exception;
+package sam.rus.optionl.utli.exception;
 
 public class MuchArgsException extends RuntimeException {
     public MuchArgsException(String message) {
