@@ -8,16 +8,12 @@ import sam.rus.rostov.entity.Box;
 import sam.rus.rostov.entity.Document;
 import sam.rus.rostov.repository.BoxRepository;
 import sam.rus.rostov.repository.DocumentRepository;
-import sam.rus.rostov.repository.imp.DocumentRepositoryImp;
 import sam.rus.rostov.service.DocumentService;
-import sam.rus.rostov.util.exception.NotFindDocumentExecption;
 
 import java.util.Optional;
 
 @Service
 public class DocumentServiceImp implements DocumentService {
-    @Autowired
-    private DocumentRepositoryImp docRepository;
 
     @Autowired
     private DocumentRepository documentRepository;

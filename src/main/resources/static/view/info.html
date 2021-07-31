@@ -8,9 +8,24 @@
     <title>Info</title>
 </head>
 <body>
-    <h1 align='center'>Info</h1>
-    <div align ='center'>
-        <p><a href="http://localhost:8080/index.html">back</a></p>
-    </div>
+<h1 align='center'>Info</h1>
+<div align ='center'>
+    <p><input type="text" name="nameBox" id="nameBox" placeholder='write a name box'/> <button onclick="findDocumentInBox()">Show</button></p>
+    <p><a href="http://localhost:8080/index.html">back</a></p>
+</div>
+
+<div align='center' id="look">
+    <table id="showDocuments" align="center" border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Code</th>
+        </tr>
+    </table>
+    <button onclick="cansel('look')">cansel</button>
+</div>
+
+
+<script src="http://localhost:8080/js/info.js"> </script>
 </body>
 </html>

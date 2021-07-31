@@ -1,7 +1,7 @@
 package sam.rus.rostov.service;
 
+import org.springframework.stereotype.Service;
 import sam.rus.rostov.dto.BoxDto;
-import sam.rus.rostov.dto.DocumentDto;
 
 public interface BoxService {
     BoxDto getBoxById(long id);
