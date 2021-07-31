@@ -8,9 +8,27 @@
     <title>Corob</title>
 </head>
 <body>
-    <h1 align='center'>Work with corob</h1>
-    <div align ='center'>
-        <p><a href="http://localhost:8080/index.html">back</a></p>
-    </div>
+<h1 align='center'>Work with box</h1>
+<div align ='center'>
+    <p><input type="text" name="idBox" id="idBox" placeholder='write id box'/> <button onclick="findBox()">find</button></p>
+    <p><button onclick="createBoxShow()">create</button></p>
+    <p><a href="http://localhost:8080/index.html">back</a></p>
+</div>
+
+<div align='center' id="look">
+    <p><input type="text" id="nameBox" value="empty"> <button onclick="changeBoxName()">chance</button></p>
+    <p><input type="text" id="codeBox" value="empty"> <button onclick="changeBoxCode()">chance</button></p>
+    <button onclick="deleteBox()">delete</button>
+    <button onclick="cansel('look')">cansel</button>
+</div>
+
+<div align='center' id='create'>
+    <p><input type="text" id="newNameBox" placeholder='write name box'> </p>
+    <p><input type="text" id="newCodeBox" placeholder='write code box'> </p>
+    <button onclick="createBoxSave()">save</button>
+    <button onclick="cansel('create')">cansel</button>
+</div>
+
+<script src="http://localhost:8080/js/boxScript.js"> </script>
 </body>
 </html>

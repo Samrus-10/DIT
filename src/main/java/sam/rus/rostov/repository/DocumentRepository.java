@@ -1,43 +1,26 @@
 package sam.rus.rostov.repository;
 
-import org.springframework.stereotype.Repository;
-import sam.rus.rostov.dto.Document;
-import sam.rus.rostov.util.exception.NotFindDocumentExecption;
 
-import javax.print.Doc;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import sam.rus.rostov.entity.Box;
+import sam.rus.rostov.entity.Document;
+import sam.rus.rostov.entity.Task;
 
 @Repository
-public class DocumentRepository {
-    private static List<Document> document = Arrays.asList(
-            new Document(1, "firstDocument", "#1001"),
-            new Document(2, "secondDocument", "#1002"),
-            new Document(3, "thirdDocument", "#1003"),
-            new Document(4, "fourthDocument", "#1004"),
-            new Document(5, "fivthDocument", "#1005")
-    );
+public interface DocumentRepository extends CrudRepository<Document, Long> {
+    @Modifying
+    @Query("UPDATE Document d SET d.name = ?2 WHERE d.id = ?1 ")
+    int updateNameDocument(long id, String name);
 
-    private static List<Document> box = Arrays.asList(
-            new Document(1, "firstBox", "#b1001"),
-            new Document(2, "secondBox", "#b1002"),
-            new Document(3, "thirdBox", "#b1003")
-    );
+    @Modifying
+    @Query("UPDATE Document d SET d.code = ?2 WHERE d.id = ?1 ")
+    int updateCodeDocument(long id, String code);
 
-
-    public Document getDocumentById(long id) throws NotFindDocumentExecption {
-        Document doc = null;
-        for (int i = 0; i < document.size(); i++) {
-            if (document.get(i).getId() == id) {
-                doc = document.get(i);
-                break;
-            }
-        }
-        if(doc == null){
-            throw new NotFindDocumentExecption("not found doc with this id");
-        }
-
-        return doc;
-    }
-
+    @Modifying
+    @Query("UPDATE Document d SET d.box = ?2 WHERE d.id = ?1 ")
+    int updateBoxDocument(long id, Box box);
 }

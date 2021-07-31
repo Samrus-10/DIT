@@ -1,14 +1,14 @@
 package sam.rus.rostov.dto;
 
-public class Document {
+public class BoxDto {
     private long id;
     private String name;
     private String code;
 
-    public Document() {
+    public BoxDto() {
     }
 
-    public Document(long id, String name, String code) {
+    public BoxDto(long id, String name, String code) {
         this.id = id;
         this.name = name;
         this.code = code;

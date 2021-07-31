@@ -1,37 +1,33 @@
 
-async function createDocShow(){
+async function createBoxShow(){
     let div = document.getElementById('create')
     div.style.display = 'block'
 }
 
-async function createDocSave(){
+async function createBoxSave(){
     let div = document.getElementById('create')
-    let input_name = document.getElementById('newNameDoc') 
-    let input_code = document.getElementById('newCodeDoc')       
-    let input_name_boxe = document.getElementById('nameBoxDoc')
+    let input_name = document.getElementById('newNameBox')
+    let input_code = document.getElementById('newCodeBox')
 
-    let input = document.getElementById('idDocument')
+    let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/createNewDoc",{
+     let reqest = await fetch("http://localhost:8080/createNewBox",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
               },
             body: JSON.stringify({
                 name : input_name.value,
-                code: input_code.value,
-                box: input_name_boxe.value
+                code: input_code.value
             })
         })
 
         let responce = await reqest.json();
 
         if(!responce){
-            // let div = document.getElementById('look')
-            // div.style.display = 'none'
-            alert('Not correct name box, try again.')
-            return
+            let div = document.getElementById('look')
+            div.style.display = 'none'
         }
 
         console.log(responce)
@@ -39,18 +35,17 @@ async function createDocSave(){
     div.style.display = 'none'
 }
 
-async function findDocument(){
+async function findBox(){
     let div = document.getElementById('look')
-    let input_name = document.getElementById('nameDoc')
-    let input_code = document.getElementById('codeDoc')
-    let input_box = document.getElementById('naemBox')
+    let input_name = document.getElementById('nameBox')
+    let input_code = document.getElementById('codeBox')
 
 
 
-    let input = document.getElementById('idDocument')
+    let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/findDocById",{
+     let reqest = await fetch("http://localhost:8080/findBoxById",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -62,7 +57,7 @@ async function findDocument(){
 
         let responce = await reqest.json();
         if(responce == null){
-            alert("Not find  document with this id, try again ")
+            alert("Not find  box with this id, try again ")
             return
         }
 
@@ -70,17 +65,16 @@ async function findDocument(){
         div.style.display = 'block'
         input_name.value = responce.name
         input_code.value = responce.code
-        input_box.value = responce.box
 
 }
 
-async function changeDocName(){
-    let input_name = document.getElementById('nameDoc')
+async function changeBoxName(){
+    let input_name = document.getElementById('nameBox')
 
-    let input = document.getElementById('idDocument')
+    let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/changeDocName",{
+     let reqest = await fetch("http://localhost:8080/changeBoxName",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -102,13 +96,13 @@ async function changeDocName(){
         alert("change success")
 }
 
-async function changeDocCode(){
-    let input_code = document.getElementById('codeDoc')
+async function changeBoxCode(){
+    let input_code = document.getElementById('codeBox')
 
-    let input = document.getElementById('idDocument')
+    let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/changeDocCode",{
+     let reqest = await fetch("http://localhost:8080/changeBoxCode",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -130,42 +124,12 @@ async function changeDocCode(){
         alert("change success")
 }
 
-async function changeDocBox(){
-    let input_code = document.getElementById('naemBox')
-
-    let input = document.getElementById('idDocument')
-    let idDoc = input.value
-
-     let reqest = await fetch("http://localhost:8080/changeDocBox",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-              },
-            body: JSON.stringify({
-                id : idDoc,
-                change: input_code.value
-            })
-        })
-
-        let responce = await reqest.json();
-
-        if(!responce){
-            // let div = document.getElementById('look')
-            // div.style.display = 'none'
-            alert("not correct name box, try again")
-            return
-        }
-    
-        console.log(responce)
-        alert("change success")
-}
-
-async function deleteDocument(){
+async function deleteBox(){
     let div = document.getElementById('look')
-    let input = document.getElementById('idDocument')
+    let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/deleteDocById",{
+     let reqest = await fetch("http://localhost:8080/deleteBoxById",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -1,12 +1,12 @@
 package sam.rus.rostov.dto;
 
-public class IdDoc {
+public class IdDTO {
     private String id;
 
-    public IdDoc() {
+    public IdDTO() {
     }
 
-    public IdDoc(String id) {
+    public IdDTO(String id) {
         this.id = id;
     }
 
