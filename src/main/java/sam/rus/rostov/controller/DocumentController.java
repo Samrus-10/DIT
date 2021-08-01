@@ -4,12 +4,14 @@ package sam.rus.rostov.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sam.rus.rostov.dto.*;
 import sam.rus.rostov.service.DocumentService;
 import sam.rus.rostov.util.json.JsonUse;
 
 @RestController
+@RequestMapping("/document")
 public class DocumentController {
 
     @Autowired
@@ -19,14 +21,14 @@ public class DocumentController {
     @Autowired
     private JsonUse<Boolean> jsonUseAnswer;
 
-    @PostMapping("/findDocById")
+    @PostMapping("/findById")
     public String findDocById(@RequestBody IdDTO requestObject) {
         long id = Long.parseLong(requestObject.getId());
         DocumentDto docById = docService.getDocById(id);
         return  jsonUse.convertToJson(docById);
     }
 
-    @PostMapping("/changeDocName")
+    @PostMapping("/changeName")
     public String changeDocName(@RequestBody ChangeCode change) {
         long id = change.getId();
         String newName =  change.getChange();
@@ -34,7 +36,7 @@ public class DocumentController {
         return  jsonUseAnswer.convertToJson(answer);
     }
 
-    @PostMapping("/changeDocCode")
+    @PostMapping("/changeCode")
     public String changeDocCode(@RequestBody ChangeCode change) {
         long id = change.getId();
         String newCode =  change.getChange();
@@ -42,7 +44,7 @@ public class DocumentController {
         return jsonUseAnswer.convertToJson(answer);
     }
 
-    @PostMapping("/changeDocBox")
+    @PostMapping("/changeBox")
     public String changeDocBox(@RequestBody ChangeCode change) {
         long id = change.getId();
         String newCode =  change.getChange();
@@ -50,14 +52,14 @@ public class DocumentController {
         return jsonUseAnswer.convertToJson(answer);
     }
 
-    @PostMapping("/deleteDocById")
+    @PostMapping("/deleteById")
     public String deleteDocById(@RequestBody IdDTO requestObject) {
         long id = Long.parseLong(requestObject.getId());
         docService.delete(id);
         return jsonUseAnswer.convertToJson(true);
     }
 
-    @PostMapping("/createNewDoc")
+    @PostMapping("/create")
     public String createNewDoc(@RequestBody NewItemDoc newItemDoc) {
         boolean answer = docService.create(newItemDoc.getName(), newItemDoc.getCode(), newItemDoc.getBox());
         return jsonUseAnswer.convertToJson(answer);

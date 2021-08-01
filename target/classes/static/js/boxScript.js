@@ -12,7 +12,7 @@ async function createBoxSave(){
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/createNewBox",{
+     let reqest = await fetch("http://localhost:8080/box/create",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -45,7 +45,7 @@ async function findBox(){
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/findBoxById",{
+     let reqest = await fetch("http://localhost:8080/box/findById",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -74,7 +74,7 @@ async function changeBoxName(){
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/changeBoxName",{
+     let reqest = await fetch("http://localhost:8080/box/changeName",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -102,7 +102,7 @@ async function changeBoxCode(){
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/changeBoxCode",{
+     let reqest = await fetch("http://localhost:8080/box/changeCode",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -129,7 +129,7 @@ async function deleteBox(){
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/deleteBoxById",{
+     let reqest = await fetch("http://localhost:8080/box/deleteById",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

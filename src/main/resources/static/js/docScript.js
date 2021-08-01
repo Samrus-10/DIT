@@ -13,7 +13,7 @@ async function createDocSave(){
     let input = document.getElementById('idDocument')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/createNewDoc",{
+     let reqest = await fetch("http://localhost:8080/document/create",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -50,7 +50,7 @@ async function findDocument(){
     let input = document.getElementById('idDocument')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/findDocById",{
+     let reqest = await fetch("http://localhost:8080/document/findById",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -80,7 +80,7 @@ async function changeDocName(){
     let input = document.getElementById('idDocument')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/changeDocName",{
+     let reqest = await fetch("http://localhost:8080/document/changeName",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -108,7 +108,7 @@ async function changeDocCode(){
     let input = document.getElementById('idDocument')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/changeDocCode",{
+     let reqest = await fetch("http://localhost:8080/document/changeCode",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -136,7 +136,7 @@ async function changeDocBox(){
     let input = document.getElementById('idDocument')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/changeDocBox",{
+     let reqest = await fetch("http://localhost:8080/document/changeBox",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -155,7 +155,7 @@ async function changeDocBox(){
             alert("not correct name box, try again")
             return
         }
-    
+
         console.log(responce)
         alert("change success")
 }
@@ -165,7 +165,7 @@ async function deleteDocument(){
     let input = document.getElementById('idDocument')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/deleteDocById",{
+     let reqest = await fetch("http://localhost:8080/document/deleteById",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
