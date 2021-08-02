@@ -9,6 +9,7 @@ import sam.rus.rostov.entity.Box;
 import sam.rus.rostov.entity.Document;
 import sam.rus.rostov.repository.BoxRepository;
 import sam.rus.rostov.service.BoxService;
+import sam.rus.rostov.util.exception.NotFindBoxException;
 
 import java.util.Optional;
 
@@ -18,14 +19,13 @@ public class BoxServiceImp implements BoxService {
     private BoxRepository boxRepository;
 
     @Override
-    public BoxDto getBoxById(long id) {
-        BoxDto box = null;
+    public BoxDto getBoxById(long id) throws NotFindBoxException {
         Optional<Box> optionalBox = boxRepository.findById(id);
-        if (optionalBox.isPresent()) {
-            Box doc = optionalBox.get();
-            box = new BoxDto(doc.getId(), doc.getName(), doc.getCode());
+        if (!optionalBox.isPresent()) {
+            throw new NotFindBoxException("Not find box");
         }
-        return box;
+        Box doc = optionalBox.get();
+        return new BoxDto(doc.getId(), doc.getName(), doc.getCode());
     }
 
     @Override

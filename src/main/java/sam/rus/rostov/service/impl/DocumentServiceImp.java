@@ -9,6 +9,7 @@ import sam.rus.rostov.entity.Document;
 import sam.rus.rostov.repository.BoxRepository;
 import sam.rus.rostov.repository.DocumentRepository;
 import sam.rus.rostov.service.DocumentService;
+import sam.rus.rostov.util.exception.NotFindDocumentExecption;
 
 import java.util.Optional;
 
@@ -21,14 +22,13 @@ public class DocumentServiceImp implements DocumentService {
     private BoxRepository boxRepository;
 
     @Override
-    public DocumentDto getDocById(long id) {
-        DocumentDto document = null;
+    public DocumentDto getDocById(long id) throws NotFindDocumentExecption {
         Optional<Document> optionalDocument = documentRepository.findById(id);
-        if (optionalDocument.isPresent()) {
-            Document doc = optionalDocument.get();
-            document = new DocumentDto(doc.getId(), doc.getName(), doc.getCode(), doc.getBox().getName());
+        if (!optionalDocument.isPresent()) {
+            throw new NotFindDocumentExecption("Not find");
         }
-        return document;
+        Document doc = optionalDocument.get();
+        return new DocumentDto(doc.getId(), doc.getName(), doc.getCode(), doc.getBox().getName());
     }
 
     @Override
@@ -76,7 +76,7 @@ public class DocumentServiceImp implements DocumentService {
     public boolean create(String name, String code, String box) {
         boolean result = true;
         Optional<Box> optionalBox = getBox(box);
-        if(optionalBox.isPresent()){
+        if (optionalBox.isPresent()) {
             Document save = documentRepository.save(
                     new Document(name, code, optionalBox.get())
             );

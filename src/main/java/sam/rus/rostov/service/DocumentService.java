@@ -1,9 +1,10 @@
 package sam.rus.rostov.service;
 
 import sam.rus.rostov.dto.DocumentDto;
+import sam.rus.rostov.util.exception.NotFindDocumentExecption;
 
 public interface DocumentService {
-    DocumentDto getDocById(long id);
+    DocumentDto getDocById(long id) throws NotFindDocumentExecption;
 
     boolean updateName(long id, String name);
 
