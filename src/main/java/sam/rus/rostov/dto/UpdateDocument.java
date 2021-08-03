@@ -1,13 +1,13 @@
 package sam.rus.rostov.dto;
 
-public class ChangeCode {
+public class UpdateDocument {
     private long id;
     private String change;
 
-    public ChangeCode() {
+    public UpdateDocument() {
     }
 
-    public ChangeCode(long id, String change) {
+    public UpdateDocument(long id, String change) {
         this.id = id;
         this.change = change;
     }

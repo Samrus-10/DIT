@@ -9,8 +9,10 @@ import sam.rus.rostov.service.DocumentService;
 import sam.rus.rostov.util.exception.NotFindDocumentExecption;
 import sam.rus.rostov.util.json.JsonUse;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/document")
+@RequestMapping("/api/v1/document")
 public class DocumentController {
 
     @Autowired
@@ -20,48 +22,41 @@ public class DocumentController {
     @Autowired
     private JsonUse<Boolean> jsonUseAnswer;
 
-    @PostMapping("/findById")
-    public String findDocById(@RequestBody IdDTO requestObject) {
-        long id = Long.parseLong(requestObject.getId());
-        DocumentDto docById = docService.getDocById(id);
-        return jsonUse.convertToJson(docById);
+    @GetMapping
+    public ResponseEntity<List<DocumentDto>> getAllDocument() {
+        return ResponseEntity.ok(docService.getAll());
     }
 
-    @PostMapping("/changeName")
-    public String changeDocName(@RequestBody ChangeCode change) {
-        long id = change.getId();
-        String newName = change.getChange();
-        boolean answer = docService.updateName(id, newName);
-        return jsonUseAnswer.convertToJson(answer);
+    @GetMapping("/{id}")
+    public ResponseEntity<DocumentDto> getDocumentById(@PathVariable Integer id) {
+        return ResponseEntity.ok(docService.getDocById(id));
     }
 
-    @PostMapping("/changeCode")
-    public String changeDocCode(@RequestBody ChangeCode change) {
-        long id = change.getId();
-        String newCode = change.getChange();
-        boolean answer = docService.udpateCode(id, newCode);
-        return jsonUseAnswer.convertToJson(answer);
+
+    @PostMapping
+    public ResponseEntity<Boolean> createDocument(@RequestBody DocumentDto doc) {
+        return ResponseEntity.ok(docService.create(doc.getName(), doc.getCode(), doc.getBox()));
     }
 
-    @PostMapping("/changeBox")
-    public String changeDocBox(@RequestBody ChangeCode change) {
-        long id = change.getId();
-        String newCode = change.getChange();
-        boolean answer = docService.udpateBox(id, newCode);
-        return jsonUseAnswer.convertToJson(answer);
+
+    @DeleteMapping
+    public ResponseEntity<DocumentDto> deleteDocument(@RequestBody IdDTO id) {
+        return ResponseEntity.ok(docService.delete(Long.parseLong(id.getId())));
     }
 
-    @PostMapping("/deleteById")
-    public String deleteDocById(@RequestBody IdDTO requestObject) {
-        long id = Long.parseLong(requestObject.getId());
-        docService.delete(id);
-        return jsonUseAnswer.convertToJson(true);
-    }
 
-    @PostMapping("/create")
-    public String createNewDoc(@RequestBody NewItemDoc newItemDoc) {
-        boolean answer = docService.create(newItemDoc.getName(), newItemDoc.getCode(), newItemDoc.getBox());
-        return jsonUseAnswer.convertToJson(answer);
+
+    @PutMapping("/{name}")
+    public ResponseEntity<Boolean> updateDocument(@PathVariable String name, @RequestBody UpdateDocument update) {
+        boolean result = false;
+        if ("NAME".equals(name)) {
+            result = docService.updateName(update.getId(), update.getChange());
+        } else if ("CODE".equals(name)) {
+            result = docService.updateCode(update.getId(), update.getChange());
+        } else if ("BOX".equals(name)) {
+            result = docService.updateBox(update.getId(), update.getChange());
+        }
+        return ResponseEntity.ok(result);
     }
 
 

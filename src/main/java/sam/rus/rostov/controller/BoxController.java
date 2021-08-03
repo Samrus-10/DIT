@@ -8,7 +8,7 @@ import sam.rus.rostov.util.exception.NotFindBoxException;
 import sam.rus.rostov.util.json.JsonUse;
 
 @RestController
-@RequestMapping("/box")
+@RequestMapping("/api/v1/box")
 public class BoxController {
 
     @Autowired
@@ -25,19 +25,9 @@ public class BoxController {
         return jsonUse.convertToJson(docById);
     }
 
-    @PostMapping("/changeName")
-    public String changeBoxName(@RequestBody ChangeCode change) {
-        long id = change.getId();
-        String newName = change.getChange();
-        boolean answer = boxService.updateName(id, newName);
-        return jsonUseAnswer.convertToJson(answer);
-    }
-
-    @PostMapping("/changeCode")
-    public String changeBoxCode(@RequestBody ChangeCode change) {
-        long id = change.getId();
-        String newCode = change.getChange();
-        boolean answer = boxService.udpateCode(id, newCode);
+    @PostMapping("/create")
+    public String createNewDoc(@RequestBody NewItemDoc newItemBox) {
+        boolean answer = boxService.create(newItemBox.getName(), newItemBox.getCode());
         return jsonUseAnswer.convertToJson(answer);
     }
 
@@ -48,9 +38,19 @@ public class BoxController {
         return jsonUseAnswer.convertToJson(true);
     }
 
-    @PostMapping("/create")
-    public String createNewDoc(@RequestBody NewItemDoc newItemBox) {
-        boolean answer = boxService.create(newItemBox.getName(), newItemBox.getCode());
+    @PostMapping("/changeName")
+    public String changeBoxName(@RequestBody UpdateDocument change) {
+        long id = change.getId();
+        String newName = change.getChange();
+        boolean answer = boxService.updateName(id, newName);
+        return jsonUseAnswer.convertToJson(answer);
+    }
+
+    @PostMapping("/changeCode")
+    public String changeBoxCode(@RequestBody UpdateDocument change) {
+        long id = change.getId();
+        String newCode = change.getChange();
+        boolean answer = boxService.udpateCode(id, newCode);
         return jsonUseAnswer.convertToJson(answer);
     }
 
