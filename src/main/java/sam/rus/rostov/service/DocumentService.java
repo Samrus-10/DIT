@@ -10,6 +10,8 @@ public interface DocumentService {
 
     DocumentDto getDocById(long id) throws NotFindDocumentExecption;
 
+    boolean create(String name, String code, String box);
+
     DocumentDto delete(long id);
 
     boolean updateName(long id, String name);
@@ -17,6 +19,4 @@ public interface DocumentService {
     boolean updateCode(long id, String code);
 
     boolean updateBox(long id, String code);
-
-    boolean create(String name, String code, String box);
 }

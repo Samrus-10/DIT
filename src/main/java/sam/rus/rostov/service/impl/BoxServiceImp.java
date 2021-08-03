@@ -11,12 +11,24 @@ import sam.rus.rostov.repository.BoxRepository;
 import sam.rus.rostov.service.BoxService;
 import sam.rus.rostov.util.exception.NotFindBoxException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BoxServiceImp implements BoxService {
     @Autowired
     private BoxRepository boxRepository;
+
+    @Override
+    public List<BoxDto> getAll() {
+        List<BoxDto> result = new ArrayList<>();
+        Iterable<Box> all = boxRepository.findAll();
+        all.forEach(item -> {
+            result.add(new BoxDto(item.getId(), item.getName(), item.getCode()));
+        });
+        return result;
+    }
 
     @Override
     public BoxDto getBoxById(long id) throws NotFindBoxException {
@@ -51,8 +63,10 @@ public class BoxServiceImp implements BoxService {
     }
 
     @Override
-    public void delete(long id) {
+    public BoxDto delete(long id) {
+        BoxDto boxById = getBoxById(id);
         boxRepository.deleteById(id);
+        return boxById;
     }
 
     @Override

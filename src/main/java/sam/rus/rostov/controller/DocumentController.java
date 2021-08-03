@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import sam.rus.rostov.dto.*;
 import sam.rus.rostov.service.DocumentService;
 import sam.rus.rostov.util.exception.NotFindDocumentExecption;
-import sam.rus.rostov.util.json.JsonUse;
 
 import java.util.List;
 
@@ -24,27 +23,23 @@ public class DocumentController {
         return ResponseEntity.ok(docService.getAll());
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<DocumentDto> getDocumentById(@PathVariable Integer id) {
         return ResponseEntity.ok(docService.getDocById(id));
     }
-
 
     @PostMapping
     public ResponseEntity<Boolean> createDocument(@RequestBody DocumentDto doc) {
         return ResponseEntity.ok(docService.create(doc.getName(), doc.getCode(), doc.getBox()));
     }
 
-
-    @DeleteMapping
-    public ResponseEntity<DocumentDto> deleteDocument(@RequestBody IdDTO id) {
-        return ResponseEntity.ok(docService.delete(Long.parseLong(id.getId())));
+    @DeleteMapping("/{id}")
+    public ResponseEntity<DocumentDto> deleteDocument(@PathVariable Long id) {
+        return ResponseEntity.ok(docService.delete(id));
     }
 
-
     @PutMapping("/{name}")
-    public ResponseEntity<Boolean> updateDocument(@PathVariable String name, @RequestBody UpdateDocument update) {
+    public ResponseEntity<Boolean> updateDocument(@PathVariable String name, @RequestBody UpdateItem update) {
         boolean result = false;
         if ("NAME".equals(name)) {
             result = docService.updateName(update.getId(), update.getChange());
@@ -55,7 +50,6 @@ public class DocumentController {
         }
         return ResponseEntity.ok(result);
     }
-
 
     @ExceptionHandler(NotFindDocumentExecption.class)
     public ResponseEntity<ResponseException> hadlerNotFindException(NotFindDocumentExecption execption) {

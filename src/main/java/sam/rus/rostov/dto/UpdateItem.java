@@ -1,13 +1,13 @@
 package sam.rus.rostov.dto;
 
-public class UpdateDocument {
+public class UpdateItem {
     private long id;
     private String change;
 
-    public UpdateDocument() {
+    public UpdateItem() {
     }
 
-    public UpdateDocument(long id, String change) {
+    public UpdateItem(long id, String change) {
         this.id = id;
         this.change = change;
     }
