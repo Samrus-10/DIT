@@ -1,12 +1,12 @@
 package sam.rus.rostov.dto;
 
-public class ErrorResponse {
+public class ResponseException {
     private String reason;
 
-    public ErrorResponse() {
+    public ResponseException() {
     }
 
-    public ErrorResponse(String reason) {
+    public ResponseException(String reason) {
         this.reason = reason;
     }
 

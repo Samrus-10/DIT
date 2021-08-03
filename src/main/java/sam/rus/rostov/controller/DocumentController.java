@@ -17,15 +17,13 @@ public class DocumentController {
 
     @Autowired
     private DocumentService docService;
-    @Autowired
-    private JsonUse<DocumentDto> jsonUse;
-    @Autowired
-    private JsonUse<Boolean> jsonUseAnswer;
+
 
     @GetMapping
     public ResponseEntity<List<DocumentDto>> getAllDocument() {
         return ResponseEntity.ok(docService.getAll());
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<DocumentDto> getDocumentById(@PathVariable Integer id) {
@@ -45,7 +43,6 @@ public class DocumentController {
     }
 
 
-
     @PutMapping("/{name}")
     public ResponseEntity<Boolean> updateDocument(@PathVariable String name, @RequestBody UpdateDocument update) {
         boolean result = false;
@@ -61,7 +58,7 @@ public class DocumentController {
 
 
     @ExceptionHandler(NotFindDocumentExecption.class)
-    public String hadlerNotFindException(NotFindDocumentExecption execption) {
-        return jsonUse.convertToJson(null);
+    public ResponseEntity<ResponseException> hadlerNotFindException(NotFindDocumentExecption execption) {
+        return ResponseEntity.ok(new ResponseException(execption.getMessage()));
     }
 }
