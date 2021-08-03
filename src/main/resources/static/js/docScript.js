@@ -54,7 +54,7 @@ async function findDocument(){
         })
 
         let responce = await reqest.json();
-        if(responce == null){
+        if(responce.reason != null){
             alert("Not find  document with this id, try again ")
             return
         }

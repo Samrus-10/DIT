@@ -19,7 +19,7 @@ public class InfoController {
     private InfoService infoService;
 
     @GetMapping("/{BoxName}")
-    public ResponseEntity<Collection<DocumentDto>> findAllDocInBox(@PathVariable String boxName) {
-        return ResponseEntity.ok(infoService.getAllDocInBox(boxName));
+    public ResponseEntity<Collection<DocumentDto>> findAllDocInBox(@PathVariable String BoxName) {
+        return ResponseEntity.ok(infoService.getAllDocInBox(BoxName));
     }
 }

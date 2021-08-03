@@ -12,6 +12,7 @@ async function findDocumentInBox(){
         })
 
         let responce = await reqest.json();
+        console.log(responce)
         if(responce.length == 0){
             alert("Not find  box with this name, try again ")
             return
