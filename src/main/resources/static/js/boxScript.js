@@ -12,7 +12,7 @@ async function createBoxSave(){
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/box/create",{
+     let reqest = await fetch("http://localhost:8080/api/v1/box",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -39,20 +39,14 @@ async function findBox(){
     let div = document.getElementById('look')
     let input_name = document.getElementById('nameBox')
     let input_code = document.getElementById('codeBox')
-
-
-
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/box/findById",{
-            method: "POST",
+     let reqest = await fetch(`http://localhost:8080/api/v1/box/${idDoc}`,{
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
-              },
-            body: JSON.stringify({
-                id : idDoc
-            })
+              }
         })
 
         let responce = await reqest.json();
@@ -70,12 +64,11 @@ async function findBox(){
 
 async function changeBoxName(){
     let input_name = document.getElementById('nameBox')
-
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/box/changeName",{
-            method: "POST",
+     let reqest = await fetch("http://localhost:8080/api/v1/box/name",{
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
               },
@@ -98,12 +91,11 @@ async function changeBoxName(){
 
 async function changeBoxCode(){
     let input_code = document.getElementById('codeBox')
-
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/box/changeCode",{
-            method: "POST",
+     let reqest = await fetch("http://localhost:8080/api/v1/box/code",{
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
               },
@@ -129,14 +121,11 @@ async function deleteBox(){
     let input = document.getElementById('idBox')
     let idDoc = input.value
 
-     let reqest = await fetch("http://localhost:8080/box/deleteById",{
+     let reqest = await fetch(`http://localhost:8080/api/v1/box/${idDoc}`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
-              },
-            body: JSON.stringify({
-                id : idDoc
-            })
+              }
         })
     
         let responce = await reqest.json();

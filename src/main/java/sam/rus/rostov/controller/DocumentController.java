@@ -41,11 +41,11 @@ public class DocumentController {
     @PutMapping("/{name}")
     public ResponseEntity<Boolean> updateDocument(@PathVariable String name, @RequestBody UpdateItem update) {
         boolean result = false;
-        if ("NAME".equals(name)) {
+        if ("name".equals(name)) {
             result = docService.updateName(update.getId(), update.getChange());
-        } else if ("CODE".equals(name)) {
+        } else if ("code".equals(name)) {
             result = docService.updateCode(update.getId(), update.getChange());
-        } else if ("BOX".equals(name)) {
+        } else if ("box".equals(name)) {
             result = docService.updateBox(update.getId(), update.getChange());
         }
         return ResponseEntity.ok(result);

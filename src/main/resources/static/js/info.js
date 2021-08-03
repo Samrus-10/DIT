@@ -3,14 +3,12 @@ async function findDocumentInBox(){
     let input = document.getElementById('nameBox')
     let nameBox = input.value
 
-     let reqest = await fetch("http://localhost:8080/findAllDocInBox",{
-            method: "POST",
+     let reqest = await fetch(`http://localhost:8080/api/v1/info/${nameBox}`,{
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
               },
-            body: JSON.stringify({
-                name : nameBox
-            })
+
         })
 
         let responce = await reqest.json();

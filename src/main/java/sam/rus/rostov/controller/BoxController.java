@@ -39,9 +39,9 @@ public class BoxController {
     @PutMapping("/{name}")
     public ResponseEntity<Boolean> updateBox(@PathVariable String name, @RequestBody UpdateItem change) {
         boolean result = false;
-        if ("NAME".equals(name)) {
+        if ("name".equals(name)) {
             result = boxService.updateName(change.getId(), change.getChange());
-        } else if ("CODE".equals(name)) {
+        } else if ("code".equals(name)) {
             result = boxService.udpateCode(change.getId(), change.getChange());
         }
         return ResponseEntity.ok(result);
