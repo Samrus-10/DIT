@@ -47,7 +47,6 @@ public class BoxController {
         return ResponseEntity.ok(result);
     }
 
-
     @ExceptionHandler(NotFindBoxException.class)
     public ResponseEntity<ResponseException> handlerNotFindBoxException(NotFindBoxException exception) {
         return ResponseEntity.ok(new ResponseException(exception.getMessage()));
