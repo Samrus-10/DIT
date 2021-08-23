@@ -27,6 +27,7 @@ public class Box {
         this.id = id;
         this.name = name;
         this.code = code;
+
     }
 
     public Long getId() {
